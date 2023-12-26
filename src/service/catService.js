@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const ROOT_DIR = path.join(__dirname, '../../');
 
 class CatService {
     constructor() {
@@ -8,7 +9,7 @@ class CatService {
 
     getCatPicById(id) {
         const catPic = this.catPics.find(pic => pic.id === id);
-        return catPic ? path.join(__dirname, '../uploads', catPic.filename) : null;
+        return catPic ? path.join(ROOT_DIR, 'uploads', catPic.filename) : null;
     }
 
     getListOfCatPics() {

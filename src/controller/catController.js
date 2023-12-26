@@ -1,8 +1,9 @@
 const express = require('express');
 const multer = require('multer');
+const path = require('path');
 const catService = require('../service/catService');
-
 const router = express.Router();
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/');
@@ -15,7 +16,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-const path = require('path');
 
 router.post('/upload', upload.single('catPic'), (req, res) => {
     const newCatPic = catService.uploadCatPic(req.file);
