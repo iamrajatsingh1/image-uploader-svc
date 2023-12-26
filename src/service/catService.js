@@ -29,7 +29,13 @@ class CatService {
         const index = this.catPics.findIndex(pic => pic.id === id);
         if (index !== -1) {
             const deletedPic = this.catPics.splice(index, 1)[0];
-            fs.unlinkSync(`uploads/${deletedPic.filename}`);
+            const filePath = path.join(ROOT_DIR, 'uploads', deletedPic.filename);
+            try {
+                fs.unlinkSync(filePath);
+            } catch (error) {
+                // Handle error, log it or ignore if the file doesn't exist
+                console.log("Error occured while deleting", error.message);
+            }
         }
         return index !== -1;
     }
@@ -37,11 +43,21 @@ class CatService {
     updateCatPic(id, file) {
         const index = this.catPics.findIndex(pic => pic.id === id);
         if (index !== -1) {
-            fs.unlinkSync(`uploads/${this.catPics[index].filename}`);
+            const currentFilename = this.catPics[index].filename;
+            const filePath = path.join(ROOT_DIR, 'uploads', currentFilename);
+    
+            try {
+                fs.unlinkSync(filePath);
+            } catch (error) {
+                // Handle error, log it or ignore if the file doesn't exist
+                console.log("Error occured while updating", error.message);
+            }
+    
             const updatedPic = {
                 id: id,
                 filename: file.filename,
             };
+    
             this.catPics[index] = updatedPic;
             return updatedPic;
         }
