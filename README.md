@@ -34,6 +34,7 @@
 
     ```bash
     npm start
+    ```
 
 The service will be accessible at http://localhost:3001.
 
@@ -52,11 +53,10 @@ If you prefer running the service in a Docker container:
     docker run -p 3001:3001 -d image-uploader-svc
     ```
 
-## Running Test Cases**
+## Running Test Cases
 
- **To run the test cases:**
-
-    ```bash
+ 1. **To run the test cases:**
+    
     npm test
 
 ## API Documentation
