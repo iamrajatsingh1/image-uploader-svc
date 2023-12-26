@@ -54,34 +54,95 @@ If you prefer running the service in a Docker container:
 
 ## Running Test Cases**
 
-1. **To run the test cases:**
+ **To run the test cases:**
 
     ```bash
     npm test
+    ```
 
 ## API Documentation
-1. **Upload Cat Pic**
-Endpoint: ```POST /cats/upload```
-Description: Upload a cat picture.
-Request Body: Form Data with a field named catPic containing the cat picture file.
-Response: JSON object with details of the uploaded cat picture.
-2. **Delete Cat Pic**
-Endpoint: ```DELETE /cats/delete/:id```
-Description: Delete a cat picture by its ID.
-Parameters: id - ID of the cat picture to delete.
-Response: Status 204 if successful, 404 if the cat picture is not found.
-3. **Update Cat Pic**
-Endpoint: ```PUT /cats/update/:id```
-Description: Update a cat picture by its ID.
-Parameters: id - ID of the cat picture to update.
-Request Body: Form Data with a field named catPic containing the updated cat picture file.
-Response: JSON object with details of the updated cat picture.
-4. **Fetch Cat Pic by ID**
-Endpoint: ```GET /cats/fetch/:id```
-Description: Fetch a cat picture by its ID.
-Parameters: id - ID of the cat picture to fetch.
-Response: Cat picture file.
-5. **List Cat Pics**
-Endpoint: ```GET /cats/list```
-Description: Get a list of all cat pictures.
-Response: JSON array containing details of all cat pictures.
+
+### 1. Upload Cat Pic
+
+- **Endpoint:** `POST /cats/upload`
+- **Description:** Upload a cat picture.
+- **Request:**
+  - **Method:** `POST`
+  - **Endpoint:** `/cats/upload`
+  - **Request Body:** Form Data
+    - `catPic`: Cat picture file
+- **Response:**
+  - **Status:** 201 Created
+  - **Body:** JSON object with details of the uploaded cat picture.
+    ```json
+    {
+      "id": 1,
+      "filename": "cat-picture.jpg"
+    }
+    ```
+
+### 2. Delete Cat Pic
+
+- **Endpoint:** `DELETE /cats/delete/:id`
+- **Description:** Delete a cat picture by its ID.
+- **Request:**
+  - **Method:** `DELETE`
+  - **Endpoint:** `/cats/delete/:id`
+    - **Parameters:** `id` - ID of the cat picture to delete.
+- **Response:**
+  - **Status:** 204 No Content if successful, 404 Not Found if the cat picture is not found.
+
+### 3. Update Cat Pic
+
+- **Endpoint:** `PUT /cats/update/:id`
+- **Description:** Update a cat picture by its ID.
+- **Request:**
+  - **Method:** `PUT`
+  - **Endpoint:** `/cats/update/:id`
+    - **Parameters:** `id` - ID of the cat picture to update.
+  - **Request Body:** Form Data
+    - `catPic`: Updated cat picture file
+- **Response:**
+  - **Status:** 200 OK
+  - **Body:** JSON object with details of the updated cat picture.
+    ```json
+    {
+      "id": 1,
+      "filename": "updated-cat-picture.jpg"
+    }
+    ```
+
+### 4. Fetch Cat Pic by ID
+
+- **Endpoint:** `GET /cats/fetch/:id`
+- **Description:** Fetch a cat picture by its ID.
+- **Request:**
+  - **Method:** `GET`
+  - **Endpoint:** `/cats/fetch/:id`
+    - **Parameters:** `id` - ID of the cat picture to fetch.
+- **Response:**
+  - **Status:** 200 OK
+  - **Body:** Cat picture file.
+
+### 5. List Cat Pics
+
+- **Endpoint:** `GET /cats/list`
+- **Description:** Get a list of all cat pictures.
+- **Request:**
+  - **Method:** `GET`
+  - **Endpoint:** `/cats/list`
+- **Response:**
+  - **Status:** 200 OK
+  - **Body:** JSON array containing details of all cat pictures.
+    ```json
+    [
+      {
+        "id": 1,
+        "filename": "cat-picture.jpg"
+      },
+      {
+        "id": 2,
+        "filename": "updated-cat-picture.jpg"
+      }
+    ]
+    ```
