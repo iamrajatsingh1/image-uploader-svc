@@ -58,7 +58,6 @@ If you prefer running the service in a Docker container:
 
     ```bash
     npm test
-    ```
 
 ## API Documentation
 
